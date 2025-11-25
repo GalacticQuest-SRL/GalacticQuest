@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Admin\\Documents\\GitHub\\GalacticQuest_Lupu_Daniela\\GalacticQuest\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{779A3611-BD84-4877-AF6D-792C49840DA1}|GalacticQuest\\GalacticQuest.csproj|c:\\users\\admin\\documents\\github\\galacticquest_lupu_daniela\\galacticquest\\galacticquest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{779A3611-BD84-4877-AF6D-792C49840DA1}|GalacticQuest\\GalacticQuest.csproj|solutionrelative:galacticquest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Admin\\Documents\\GitHub\\GalacticQuest_Lupu_Daniela\\GalacticQuest\\GalacticQuest\\Program.cs",
+              "RelativeDocumentMoniker": "GalacticQuest\\Program.cs",
+              "ToolTip": "C:\\Users\\Admin\\Documents\\GitHub\\GalacticQuest_Lupu_Daniela\\GalacticQuest\\GalacticQuest\\Program.cs",
+              "RelativeToolTip": "GalacticQuest\\Program.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwC0AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-21T13:23:29.838Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
