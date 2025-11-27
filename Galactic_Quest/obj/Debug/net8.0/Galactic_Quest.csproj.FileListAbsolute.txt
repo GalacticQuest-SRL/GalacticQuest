@@ -1,0 +1,15 @@
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\bin\Debug\net8.0\Galactic_Quest.exe
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\bin\Debug\net8.0\Galactic_Quest.deps.json
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\bin\Debug\net8.0\Galactic_Quest.runtimeconfig.json
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\bin\Debug\net8.0\Galactic_Quest.dll
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\bin\Debug\net8.0\Galactic_Quest.pdb
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\obj\Debug\net8.0\Galactic_Quest.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\obj\Debug\net8.0\Galactic_Quest.AssemblyInfoInputs.cache
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\obj\Debug\net8.0\Galactic_Quest.AssemblyInfo.cs
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\obj\Debug\net8.0\Galactic_Quest.csproj.CoreCompileInputs.cache
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\obj\Debug\net8.0\Galactic_Quest.sourcelink.json
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\obj\Debug\net8.0\Galactic_Quest.dll
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\obj\Debug\net8.0\refint\Galactic_Quest.dll
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\obj\Debug\net8.0\Galactic_Quest.pdb
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\obj\Debug\net8.0\Galactic_Quest.genruntimeconfig.cache
+C:\Users\alinc\Desktop\GalacticQuest\Galactic_Quest\obj\Debug\net8.0\ref\Galactic_Quest.dll
