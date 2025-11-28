@@ -1,0 +1,15 @@
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\bin\Debug\net8.0\TemaCuBalauri.exe
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\bin\Debug\net8.0\TemaCuBalauri.deps.json
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\bin\Debug\net8.0\TemaCuBalauri.runtimeconfig.json
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\bin\Debug\net8.0\TemaCuBalauri.dll
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\bin\Debug\net8.0\TemaCuBalauri.pdb
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\obj\Debug\net8.0\TemaCuBalauri.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\obj\Debug\net8.0\TemaCuBalauri.AssemblyInfoInputs.cache
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\obj\Debug\net8.0\TemaCuBalauri.AssemblyInfo.cs
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\obj\Debug\net8.0\TemaCuBalauri.csproj.CoreCompileInputs.cache
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\obj\Debug\net8.0\TemaCuBalauri.sourcelink.json
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\obj\Debug\net8.0\TemaCuBalauri.dll
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\obj\Debug\net8.0\refint\TemaCuBalauri.dll
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\obj\Debug\net8.0\TemaCuBalauri.pdb
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\obj\Debug\net8.0\TemaCuBalauri.genruntimeconfig.cache
+C:\Users\iulia\Desktop\TRIMBLE\GalacticQuest\TemaCuBalauri\TemaCuBalauri\obj\Debug\net8.0\ref\TemaCuBalauri.dll
