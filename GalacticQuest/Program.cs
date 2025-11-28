@@ -6,7 +6,25 @@
         {
             Console.WriteLine("Hello, Galactic Quest!");
 
+            CreateAndDisplayPlayerStats();
+
             OpenMainMenu();
+        }
+
+        private static void CreateAndDisplayPlayerStats()
+        {
+            Console.Write("\n");
+
+            List<(string, int)> items = new List<(string, int)>() { ("Excalibur", 500), ("Tessaiga", 1000) };
+            Player player = new Player(50, 1, items);
+            //Player player = new Player(40, 2);
+            //Player player = new Player(30);
+            //Player player = new Player();
+
+            player.ShowProfile();
+
+            player.UpdateHp(-60);
+            Console.WriteLine($"After updating HP: {player.Hp}");
         }
 
         internal static void OpenMainMenu()
@@ -15,7 +33,7 @@
 
             while (isAppRunning)
             {
-                Console.WriteLine("\n");
+                Console.Write("\n");
                 Console.WriteLine("Select your option and press Enter: \n 1.Travel \n 2.Journal \n 3.Exit \n");
                 int.TryParse(Console.ReadLine(), out int readOption);
 
@@ -51,7 +69,7 @@
 
         internal static void OpenTravelMenu()
         {
-            Console.WriteLine("\n");
+            Console.Write("\n");
             Console.WriteLine("Select your option and press Enter: \n 1.Explore \n 2.Search For Items \n 3.Back To Ship \n 4.Back To Main Menu\n");
 
             int.TryParse(Console.ReadLine(), out int readOption);
@@ -82,7 +100,7 @@
 
         internal static void OpenJournalMenu()
         {
-            Console.WriteLine("\n");
+            Console.Write("\n");
             Console.WriteLine("Select your option and press Enter: \n 1.Monsters \n 2.Planets \n 3.Items \n 4.Back To Main Menu\n");
 
             int.TryParse(Console.ReadLine(), out int readOption);
@@ -162,13 +180,13 @@
             {
                 Console.WriteLine(monstersWithHp.Keys.ElementAt(index) + " - " + monstersWithHp.Values.ElementAt(index) + " HP");
             }
-            Console.WriteLine("\n");
+            Console.Write("\n");
 
             for (int index = 0; index < monstersWithAttack.Count; ++index)
             {
                 Console.WriteLine(monstersWithAttack.Keys.ElementAt(index) + " - " + monstersWithAttack.Values.ElementAt(index) + " ATT");
             }
-            Console.WriteLine("\n");
+            Console.Write("\n");
 
             ShowMonstersOptions(monstersWithHp);
         }
@@ -198,7 +216,7 @@
             Console.WriteLine("Enter letters to filter monsters: ");
             string? userInput = Console.ReadLine();
 
-            Console.WriteLine("\n");
+            Console.Write("\n");
 
             Dictionary<string, int> filteredMonstersByName = new Dictionary<string, int>();
             if (!string.IsNullOrEmpty(userInput))
@@ -218,7 +236,8 @@
             }
             else
             {
-                Console.WriteLine("No input provided. Showing all monsters. \n");
+                Console.WriteLine("No input provided. Showing all monsters.");
+                Console.Write("\n");
 
                 for (int index = 0; index < monstersWithHp.Count; ++index)
                 {
@@ -228,7 +247,8 @@
 
             if (filteredMonstersByName.Count == 0)
             {
-                Console.WriteLine("None of the monsters starts with these letters. \n");
+                Console.WriteLine("None of the monsters starts with these letters.");
+                Console.Write("\n");
             }
             else
             {
