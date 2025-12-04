@@ -1,21 +1,15 @@
-﻿namespace GalacticQuest
+﻿using GalacticQuest.Models;
+
+namespace GalacticQuest
 {
     public class Player
     {
         public int Hp { get; private set; } = 100;
         public int Attack { get; private set; } = 10;
-        public List<(string, int)> Items { get; private set; } = new List<(string, int)>();
         public int Credits { get; private set; } = 0;
+        public List<Item> Items { get; private set; } = new List<Item>();
 
-        public Player(int hp, int attack, List<(string, int)> items, int credits)
-        {
-            Hp = hp;
-            Attack = attack;
-            Items = items;
-            Credits = credits;
-        }
-
-        public Player(int hp, int attack, List<(string, int)> items)
+        public Player(int hp, int attack, List<Item> items)
         {
             Hp = hp;
             Attack = attack;
@@ -36,45 +30,89 @@
         public Player()
         {
         }
+
         public void UpdateHp(int hp)
         {
             Hp += hp;
+            OnDeath();
+        }
+
+        public void OnDeath()
+        {
             if (Hp <= 0)
             {
                 Hp = 0;
-                OnDeath();
+                Console.WriteLine("You can bring the coliva");
+                Console.WriteLine("The priest is singing");
             }
         }
 
-        private void OnDeath()
+        public List<Item> GetItems()
         {
-            Console.WriteLine("Player has died. Game Over. (-_-')");
+            return Items;
         }
 
-        public void AddItem((string, int) item, int price)
+        public void UpdateItems(Item item, int price)
         {
-            if (Credits < price)
+            if (price == 0)
             {
+                Console.WriteLine("Price can't be 0, decide if you're buying or selling.");
+                return;
+            }
+
+            // BUY
+            if (price < 0)
+            {
+                Transaction(price);
+                Items.Add(item);
+
+                Console.WriteLine($"Bought {item.Name} with attack {item.Attack}");
+                return;
+            }
+
+            // SELL
+            if (price > 0)
+            {
+                bool found = false;
+
+                for (int i = 0; i < Items.Count; i++)
                 {
-                    Console.WriteLine("Not enough credits to purchase this item.");
+                    if (Items[i].Name == item.Name && Items[i].Attack == item.Attack)
+                    {
+                        Items.RemoveAt(i);
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    Console.WriteLine($"You cannot sell {item.Name}, you don't own it.");
                     return;
                 }
 
+                Transaction(price);
+
+                Console.WriteLine($"Sold {item.Name} with attack {item.Attack}");
             }
-
-            UpdateCredits(-price);
-
-            Items.Add(item);
         }
 
-        private void UpdateCredits(int credits)
+
+        public void Transaction(int transaction)
         {
-            Credits += credits;
+            Credits += transaction;
+            if (Credits < 0)
+            {
+                Console.WriteLine($"You are in dept, your credits are {Credits}");
+            }
+            else
+            {
+                Console.WriteLine($"your credits are {Credits}");
+            }
         }
 
         public void ShowProfile()
         {
-            Console.WriteLine("/-------------------------/");
             Console.WriteLine("Displaying Player Profile:");
 
             Console.WriteLine($"Player HP: {Hp}");
@@ -86,7 +124,7 @@
             Console.WriteLine("Player Items: ");
             for (int index = 0; index < Items.Count; ++index)
             {
-                Console.WriteLine($"Item -> Name: {Items[index].Item1}" + " | " + $"Attack: {Items[index].Item2}");
+                Console.WriteLine($"Item -> Name: {Items[index].Name}" + " | " + $"Attack: {Items[index].Attack}");
             }
             Console.Write("\n");
 
@@ -94,13 +132,12 @@
             int playerTotalAttack = Attack;
             for (int index = 0; index < Items.Count; ++index)
             {
-                string itemName = Items[index].Item1;
-                int itemAttack = Items[index].Item2;
+                string itemName = Items[index].Name;
+                int itemAttack = Items[index].Attack;
 
                 playerTotalAttack += itemAttack;
             }
             Console.WriteLine($"Player Attack (Combined With Items Attack): {playerTotalAttack}");
-            Console.WriteLine("/-------------------------/");
             Console.Write("\n");
         }
     }
