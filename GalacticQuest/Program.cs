@@ -1,6 +1,4 @@
-﻿using GalacticQuest.DataModels;
-
-namespace GalacticQuest
+﻿namespace GalacticQuest
 {
     internal class Program
     {
@@ -8,18 +6,31 @@ namespace GalacticQuest
         {
             Console.WriteLine("Hello, Galactic Quest!");
 
-            Player player = new Player(40 , 20, new List<(string, int)> (), 42);
-            //Console.WriteLine("Hp: " + player.Hp);
-            player.ShowDetails();
-            player.AddItem(("Laser Gun", 1));
-            player.ShowDetails();
-            player.RemoveItem("Laser Gun");
-            player.AddItem(("Health Potion", 3));
-            player.ShowDetails();
-            //player.UpdateHp(-100);
-            //player.ShowDetails();
+            CreateAndDisplayPlayerStats();
 
             OpenMainMenu();
+        }
+
+        private static void CreateAndDisplayPlayerStats()
+        {
+            Console.Write("\n");
+
+            List<(string, int)> items = new List<(string, int)>() { ("Excalibur", 500), ("Tessaiga", 1000) };
+            Player player = new Player(50, 1, items, 10);
+            //Player player = new Player(50, 1, items);
+            //Player player = new Player(40, 2);
+            //Player player = new Player(30);
+            //Player player = new Player();
+
+            player.ShowProfile();
+
+            (string, int) newItem = ("Dragon Slayer", 1500);
+            player.AddItem(newItem, 6);
+
+            player.ShowProfile();
+
+            player.UpdateHp(-60);
+            Console.WriteLine($"After updating HP: {player.Hp}");
         }
 
         internal static void OpenMainMenu()
@@ -28,34 +39,36 @@ namespace GalacticQuest
 
             while (isAppRunning)
             {
-                Console.WriteLine("\n");
+                Console.Write("\n");
                 Console.WriteLine("Select your option and press Enter: \n 1.Travel \n 2.Journal \n 3.Exit \n");
                 int.TryParse(Console.ReadLine(), out int readOption);
+
 
                 try
                 {
                     switch (readOption)
                     {
-                        case (int)GameOptions.Monsters:
+                        case 1:
                             OpenTravelMenu();
                             break;
 
-                        case (int)GameOptions.Journal:
+                        case 2:
                             OpenJournalMenu();
                             break;
 
-                        case (int)GameOptions.Exit:
+                        case 3:
                             isAppRunning = false;
                             break;
 
                         default:
-                            throw new Exception();
+                            throw new Exception("Invalid Option");
 
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    Console.WriteLine("There was an error!");
+                    Console.WriteLine("(-_-') " + ex.Message);
+                    isAppRunning = false;
                 }
             }
         }
@@ -69,7 +82,7 @@ namespace GalacticQuest
 
         internal static void OpenTravelMenu()
         {
-            Console.WriteLine("\n");
+            Console.Write("\n");
             Console.WriteLine("Select your option and press Enter: \n 1.Explore \n 2.Search For Items \n 3.Back To Ship \n 4.Back To Main Menu\n");
 
             int.TryParse(Console.ReadLine(), out int readOption);
@@ -100,7 +113,7 @@ namespace GalacticQuest
 
         internal static void OpenJournalMenu()
         {
-            Console.WriteLine("\n");
+            Console.Write("\n");
             Console.WriteLine("Select your option and press Enter: \n 1.Monsters \n 2.Planets \n 3.Items \n 4.Back To Main Menu\n");
 
             int.TryParse(Console.ReadLine(), out int readOption);
@@ -180,13 +193,13 @@ namespace GalacticQuest
             {
                 Console.WriteLine(monstersWithHp.Keys.ElementAt(index) + " - " + monstersWithHp.Values.ElementAt(index) + " HP");
             }
-            Console.WriteLine("\n");
+            Console.Write("\n");
 
             for (int index = 0; index < monstersWithAttack.Count; ++index)
             {
                 Console.WriteLine(monstersWithAttack.Keys.ElementAt(index) + " - " + monstersWithAttack.Values.ElementAt(index) + " ATT");
             }
-            Console.WriteLine("\n");
+            Console.Write("\n");
 
             ShowMonstersOptions(monstersWithHp);
         }
@@ -216,7 +229,7 @@ namespace GalacticQuest
             Console.WriteLine("Enter letters to filter monsters: ");
             string? userInput = Console.ReadLine();
 
-            Console.WriteLine("\n");
+            Console.Write("\n");
 
             Dictionary<string, int> filteredMonstersByName = new Dictionary<string, int>();
             if (!string.IsNullOrEmpty(userInput))
@@ -236,7 +249,8 @@ namespace GalacticQuest
             }
             else
             {
-                Console.WriteLine("No input provided. Showing all monsters. \n");
+                Console.WriteLine("No input provided. Showing all monsters.");
+                Console.Write("\n");
 
                 for (int index = 0; index < monstersWithHp.Count; ++index)
                 {
@@ -246,7 +260,8 @@ namespace GalacticQuest
 
             if (filteredMonstersByName.Count == 0)
             {
-                Console.WriteLine("None of the monsters starts with these letters. \n");
+                Console.WriteLine("None of the monsters starts with these letters.");
+                Console.Write("\n");
             }
             else
             {
@@ -256,6 +271,5 @@ namespace GalacticQuest
                 }
             }
         }
-
     }
 }
