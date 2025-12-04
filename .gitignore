@@ -1,0 +1,34 @@
+# --- VISUAL STUDIO ---
+.vs/
+*.user
+*.suo
+
+# --- BUILD RESULTS ---
+bin/
+obj/
+out/
+Debug/
+Release/
+
+# --- EXECUTABLES & DLL ---
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# --- TEMP FILES ---
+*.tmp
+*.bak
+
+# --- TEST RESULTS ---
+TestResults/
+
+# --- DATABASE FILES ---
+*.db
+
+# --- IDE / MISC ---
+*.opendb
+*.ide
+*.data
+*.tmp
