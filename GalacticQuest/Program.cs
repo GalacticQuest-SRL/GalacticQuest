@@ -1,4 +1,6 @@
-﻿namespace GalacticQuest
+﻿using GalacticQuest.Models;
+
+namespace GalacticQuest
 {
     internal class Program
     {
@@ -21,6 +23,17 @@
             //Player player = new Player(40, 2);
             //Player player = new Player(30);
             //Player player = new Player();
+            Monster testMonster = new Monster();
+            Monster testNewMonster = new Monster("Alastor", 100, 100, Monster.HellRing.Pride, Monster.DemonSpecies.Overlord);
+
+            testMonster.ShowInfo();
+            testNewMonster.ShowInfo();
+
+            AngelicWeapon luciferStaff = new AngelicWeapon("Lucifer's Staff", 50, 20);
+            luciferStaff.SpeciaLPower();
+
+            HellWeapon alastorRadioStick = new HellWeapon("Alastor's radio stick", 80, 30);
+            alastorRadioStick.SpeciaLPower();
 
             player.ShowProfile();
 
@@ -121,10 +134,9 @@
             switch (readOption)
             {
                 case 1:
-                    List<string> monstersWithNames = CreateMonstersWithNames();
-                    Dictionary<string, int> monstersWithHp = CreateMonstersWith("hp", monstersWithNames);
-                    Dictionary<string, int> monstersWithAttack = CreateMonstersWith("attack", monstersWithNames);
-                    ShowMonsters(monstersWithHp, monstersWithAttack);
+                    List<Monster> monsters = CreateMonsters();
+                    ShowMonsters(monsters);
+                    ShowMonstersOptions(monsters);
                     break;
 
                 case 2:
@@ -144,67 +156,47 @@
             }
         }
 
-        internal static List<string> CreateMonstersWithNames()
+        internal static List<Monster> CreateMonsters()
         {
-            List<string> monstersList = new List<string>
+            List<Monster> monsters = new()
             {
-                "Glorbazorg",
-                "Xenotutzi",
-                "Ignifax",
-                "Kryostasis",
-                "Nighthorn",
-                "Leviathan-Maw",
-                "Hydro-King Aqueron",
-                "Stonemouth"
+                new Sinner("Alastor", 250, 200, Monster.HellRing.Pride, Monster.DemonSpecies.Overlord),
+                new Monster("Lucifer", 676, 676, Monster.HellRing.Pride, Monster.DemonSpecies.FallenAngel),
+                new Hellborn("Charlie", 220, 120, Monster.HellRing.Pride, Monster.DemonSpecies.Hellborn),
+                new Monster("Vaggie", 140, 90, Monster.HellRing.Pride, Monster.DemonSpecies.FallenAngel),
+                new Sinner("Angel Dust", 110, 85, Monster.HellRing.Pride, Monster.DemonSpecies.Succubi),
+                new Sinner("Husk", 120, 60, Monster.HellRing.Sloth, Monster.DemonSpecies.Hellborn),
+                new Sinner("Niffty", 80, 75, Monster.HellRing.Greed, Monster.DemonSpecies.Hellborn),
+                new Sinner("Sir Pentious", 140, 70, Monster.HellRing.Greed, Monster.DemonSpecies.Sinner),
+                new Sinner("Velvette", 180, 130, Monster.HellRing.Pride, Monster.DemonSpecies.Overlord),
+                new Hellborn("Blitzo", 100, 85, Monster.HellRing.Wrath, Monster.DemonSpecies.Imp),
+                new Hellborn("Moxxie", 90, 80, Monster.HellRing.Wrath, Monster.DemonSpecies.Imp),
+                new Hellborn("Millie", 110, 95, Monster.HellRing.Wrath, Monster.DemonSpecies.Imp),
+                new Hellborn("Loona", 130, 100, Monster.HellRing.Wrath, Monster.DemonSpecies.Hellhound),
+                new Hellborn("Stolas", 300, 250, Monster.HellRing.Pride, Monster.DemonSpecies.Goetia),
+                new Hellborn("Asmodeus", 260, 200, Monster.HellRing.Lust, Monster.DemonSpecies.Overlord),
+                new Hellborn("Fizzarolli", 110, 90, Monster.HellRing.Lust, Monster.DemonSpecies.Imp),
+                new Hellborn("Striker", 140, 110, Monster.HellRing.Wrath, Monster.DemonSpecies.Sinner),
+                new Hellborn("Verosika Mayday", 150, 120, Monster.HellRing.Lust, Monster.DemonSpecies.Succubi),
+                new Hellborn("Mammon", 270, 220, Monster.HellRing.Greed, Monster.DemonSpecies.Overlord)
             };
-            return monstersList;
+
+            return monsters;
         }
 
-        internal static Dictionary<string, int> CreateMonstersWith(string hpOrAttack, List<string> monstersList)
-        {
-            Dictionary<string, int> monstersDictionary = new Dictionary<string, int>();
-            Random randomGenerator = new Random();
 
-            for (int i = 0; i < monstersList.Count; ++i)
-            {
-                string monsterKey = monstersList[i];
-                int monsterValue = 0; // default value
-
-                if (hpOrAttack == "hp")
-                {
-                    monsterValue = randomGenerator.Next(10, 100);
-                }
-                else if (hpOrAttack == "attack")
-                {
-                    monsterValue = randomGenerator.Next(1, 20);
-                }
-
-                monstersDictionary.Add(monsterKey, monsterValue);
-            }
-
-            return monstersDictionary;
-        }
-
-        internal static void ShowMonsters(Dictionary<string, int> monstersWithHp, Dictionary<string, int> monstersWithAttack)
+        internal static void ShowMonsters(List<Monster> monsters)
         {
             Console.WriteLine("The monsters are : ");
 
-            for (int index = 0; index < monstersWithHp.Count; ++index)
+            for (int index = 0; index < monsters.Count; ++index)
             {
-                Console.WriteLine(monstersWithHp.Keys.ElementAt(index) + " - " + monstersWithHp.Values.ElementAt(index) + " HP");
+                monsters[index].ShowInfo();
             }
             Console.Write("\n");
-
-            for (int index = 0; index < monstersWithAttack.Count; ++index)
-            {
-                Console.WriteLine(monstersWithAttack.Keys.ElementAt(index) + " - " + monstersWithAttack.Values.ElementAt(index) + " ATT");
-            }
-            Console.Write("\n");
-
-            ShowMonstersOptions(monstersWithHp);
         }
 
-        internal static void ShowMonstersOptions(Dictionary<string, int> monstersWithHp)
+        internal static void ShowMonstersOptions(List<Monster> monsters)
         {
             Console.WriteLine("Press 1 to go back or 2 to filter monsters based on name");
 
@@ -215,7 +207,7 @@
                     break;
 
                 case 2:
-                    FilterMonstersByName(monstersWithHp);
+                    FilterMonstersByName(monsters);
                     break;
 
                 default:
@@ -224,26 +216,25 @@
             }
         }
 
-        internal static void FilterMonstersByName(Dictionary<string, int> monstersWithHp)
+        internal static void FilterMonstersByName(List<Monster> monsters)
         {
             Console.WriteLine("Enter letters to filter monsters: ");
             string? userInput = Console.ReadLine();
-
+            List<Monster> filteredMonstersByName = new List<Monster>();
             Console.Write("\n");
 
-            Dictionary<string, int> filteredMonstersByName = new Dictionary<string, int>();
             if (!string.IsNullOrEmpty(userInput))
             {
                 string lowerCasedUserInput = userInput.ToLower();
-                for (int index = 0; index < monstersWithHp.Count; ++index)
+                for (int index = 0; index < monsters.Count; ++index)
                 {
-                    string currentMonsterName = monstersWithHp.Keys.ElementAt(index);
+                    string currentMonsterName = monsters[index].Name;
                     string lowerCasedCurrentMonster = currentMonsterName.ToLower();
 
                     if (lowerCasedCurrentMonster.Contains(lowerCasedUserInput))
                     {
-                        int currentMonsterHp = monstersWithHp[currentMonsterName];
-                        filteredMonstersByName.Add(currentMonsterName, currentMonsterHp);
+                        int currentMonsterHp = monsters[index].Hp;
+                        filteredMonstersByName.Add(monsters[index]);
                     }
                 }
             }
@@ -252,9 +243,9 @@
                 Console.WriteLine("No input provided. Showing all monsters.");
                 Console.Write("\n");
 
-                for (int index = 0; index < monstersWithHp.Count; ++index)
+                for (int index = 0; index < monsters.Count; ++index)
                 {
-                    Console.WriteLine(monstersWithHp.Keys.ElementAt(index));
+                    Console.WriteLine(monsters[index].Name);
                 }
             }
 
@@ -267,7 +258,7 @@
             {
                 for (int index = 0; index < filteredMonstersByName.Count; ++index)
                 {
-                    Console.WriteLine(filteredMonstersByName.Keys.ElementAt(index) + " - " + filteredMonstersByName.Values.ElementAt(index) + " HP");
+                    Console.WriteLine(filteredMonstersByName[index].Name + " - " + filteredMonstersByName[index].Hp + " HP");
                 }
             }
         }
