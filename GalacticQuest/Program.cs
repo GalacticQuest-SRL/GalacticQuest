@@ -1,5 +1,6 @@
-﻿using GalacticQuest.Items;
-using GalacticQuest.Monsters;
+﻿using GalacticQuest.Models.Items;
+using GalacticQuest.Models.Monsters;
+using GalacticQuest.Planets;
 
 namespace GalacticQuest
 {
@@ -106,6 +107,7 @@ namespace GalacticQuest
             {
                 case 1:
                     Console.WriteLine("Selected Explore");
+                    PlanetHelper.TravelToRandomPlanet();
                     break;
 
                 case 2:

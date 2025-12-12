@@ -1,4 +1,4 @@
-﻿namespace GalacticQuest.Items
+﻿namespace GalacticQuest.Models.Items
 {
     public abstract class Item
     {
