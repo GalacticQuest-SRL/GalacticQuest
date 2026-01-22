@@ -6,7 +6,7 @@ namespace GalacticQuest.Planets
 {
    internal static class PlanetHelper
    {
-      internal static readonly List<IPlanet> PLANETS_LIST = new List<IPlanet>() { new PlanetMeridian(), new PlanetNibiru(), new PlanetVespera() };
+      internal static readonly IList<IPlanet> PLANETS_LIST = new List<IPlanet>() { new PlanetMeridian(), new PlanetNibiru(), new PlanetVespera() };
 
       internal static readonly Random RandomNumberGenerator = new Random();
 
@@ -24,9 +24,9 @@ namespace GalacticQuest.Planets
          IPlanet chosenPlanet = PLANETS_LIST.ElementAt(randomPlanetIndex);
 
          _currentPlanetIndex = randomPlanetIndex;
-         Console.WriteLine($" You travelled to planet : {chosenPlanet.GetType().ToString().Split(".").Last()} ");
+         Console.WriteLine($" You travelled to planet : {chosenPlanet.GetType().Name.Replace("Planet", "")}");
 
-         Monster? randomMonster = ChooseRandomMonsterFromPlanet(chosenPlanet);
+         /* Monster? randomMonster = ChooseRandomMonsterFromPlanet(chosenPlanet);
 
          if (randomMonster is null)
          {
@@ -34,7 +34,8 @@ namespace GalacticQuest.Planets
             return;
          }
 
-         Console.WriteLine($" You have encountered a monster of type : {randomMonster.GetType().ToString().Split(".").Last()}, called by their name {randomMonster?.Name} with {randomMonster?.Hp} HP ");
+         Console.WriteLine($" You have encountered a monster of type : {randomMonster.GetType().ToString().Split(".").Last()}, called by their name {randomMonster?.Name} with {randomMonster?.Hp} HP "); */
+      
       }
 
 
@@ -68,7 +69,7 @@ namespace GalacticQuest.Planets
       /// </summary>
       /// <param name="planet"> The planet on which to find monsters </param>
       /// <returns> The found monster, otherwise null </returns>
-      private static Monster? ChooseRandomMonsterFromPlanet(IPlanet planet)
+      internal static Monster? ChooseRandomMonsterFromPlanet(IPlanet planet)
       {
          IList<Monster> monstersOnPlanet = planet?.GetInhabitants();
 
@@ -96,5 +97,21 @@ namespace GalacticQuest.Planets
 
          return itemsOnPlanet.ElementAtOrDefault(RandomNumberGenerator.Next(0, itemsOnPlanet.Count));
       }
-   }
+        internal static IPlanet GetCurrentPlanet()
+        {
+            if (_currentPlanetIndex < 0 || _currentPlanetIndex >= PLANETS_LIST.Count)
+                return null;
+
+            return PLANETS_LIST.ElementAt(_currentPlanetIndex);
+        }
+
+        internal static Monster GetRandomMonsterFromCurrentPlanet()
+        {
+            IPlanet currentPlanet = GetCurrentPlanet();
+            if (currentPlanet == null) return null;
+
+            return ChooseRandomMonsterFromPlanet(currentPlanet);
+        }
+
+    }
 }
