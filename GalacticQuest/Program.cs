@@ -1,8 +1,9 @@
 ﻿using GalacticQuest.Items;
+using GalacticQuest.Models;
 using GalacticQuest.Monsters;
 using GalacticQuest.Planets;
-
 namespace GalacticQuest
+
 {
     internal class Program
     {
@@ -15,6 +16,11 @@ namespace GalacticQuest
             //CreateAndDisplayPlayerStats();
 
             OpenMainMenu();
+
+            //Item item = new Excalibur("Excalibur", 150, 120);
+            //item.SpecialEffect = 325.54;
+
+            
         }
 
         internal static void CreateAndDisplayItems()
@@ -23,17 +29,17 @@ namespace GalacticQuest
             Console.WriteLine("Displaying Created Items:");
 
             Random randomGenerator = new Random();
-            List<Item> items = new List<Item>()
+            IList<Item> items = new List<Item>()
             {
                 new Excalibur("Excalibur", randomGenerator.Next(50, 200), randomGenerator.Next(100, 200)),
                 new Tessaiga ("Tessaiga", randomGenerator.Next(100, 300), randomGenerator.Next(50, 100)),
             };
 
-            for (int index = 0; index < items.Count; ++index)
+            foreach (Item item in items)
             {
-                Console.WriteLine($"Item: {items[index].Name} | Attack: {items[index].Attack} | Resistance: {items[index].Resitance}");
+                Console.WriteLine($"Item: {item.Name} | Attack: {item.Attack} | Resistance: {item.Resitance}");
                 Console.WriteLine("Item's Special Power: ");
-                items[index].SpecialPower();
+                item.SpecialPower();
             }
         }
 
@@ -74,6 +80,7 @@ namespace GalacticQuest
                     switch (readOption)
                     {
                         case 1:
+                            PlanetHelper.TravelToRandomPlanet();
                             OpenTravelMenu();
                             break;
 
@@ -113,7 +120,7 @@ namespace GalacticQuest
             {
                 case 1:
                     Console.WriteLine("Selected Explore");
-                    PlanetHelper.TravelToRandomPlanet();
+                    StartExploration();
                     break;
 
                 case 2:
@@ -165,38 +172,38 @@ namespace GalacticQuest
             }
         }
 
-      internal static void CreateAndDisplayMonsters()
-      {
-         Console.Write("\n");
-         Console.WriteLine("Displaying Created Monsters:");
+        internal static void CreateAndDisplayMonsters()
+        {
+            Console.Write("\n");
+            Console.WriteLine("Displaying Created Monsters:");
 
-         Random randomGenerator = new Random();
-         List<Monster> monsters = new List<Monster>()
+            Random randomGenerator = new Random();
+            IList<Monster> monsters = new List<Monster>()
             {
-                new Glorbazorg("Glorbazorg", randomGenerator.Next(10, 100), randomGenerator.Next(10, 100)),
-                new Xenotutzi("Xenotutzi", randomGenerator.Next(10, 100), randomGenerator.Next(10, 100)),
-                new Kryostasis("Kryostasis", randomGenerator.Next(10, 100), randomGenerator.Next(10, 100)),
-                new Ignifax("Ignifax", randomGenerator.Next(10, 100), randomGenerator.Next(10, 100))
+                 new Glorbazorg("Glorbazorg", randomGenerator.Next(10, 100), randomGenerator.Next(10, 100)),
+                 new Xenotutzi("Xenotutzi", randomGenerator.Next(10, 100), randomGenerator.Next(10, 100)),
+                 new Kryostasis("Kryostasis", randomGenerator.Next(10, 100), randomGenerator.Next(10, 100)),
+                 new Ignifax("Ignifax", randomGenerator.Next(10, 100), randomGenerator.Next(10, 100))
             };
 
-         ShowMonsters(monsters);
-      }
+            ShowMonsters(monsters);
+        }
 
-      internal static void ShowMonsters(List<Monster> monsters)
+        internal static void ShowMonsters(IList<Monster> monsters)
         {
             Console.Write("\n");
             Console.WriteLine("The monsters are : ");
 
-            for (int index = 0; index < monsters.Count; ++index)
+            foreach (Monster monster in monsters)
             {
-                Console.WriteLine(monsters[index].Name + " - " + monsters[index].Hp + " HP | " + monsters[index].Attack + " Attack");
+                Console.WriteLine(monster.Name + " - " + monster.Hp + " HP | " + monster.Attack + " Attack");
             }
             Console.Write("\n");
 
             ShowMonstersOptions(monsters);
         }
 
-        internal static void ShowMonstersOptions(List<Monster> monsters)
+        internal static void ShowMonstersOptions(IList<Monster> monsters)
         {
             Console.WriteLine("Select your option and press Enter: \n 1.Go Back \n 2.Filter Monsters By Name \n 3.Show Monsters Last Words\n");
 
@@ -220,8 +227,8 @@ namespace GalacticQuest
             }
         }
 
-         internal static void OpenBackpackMenu()
-         {
+        internal static void OpenBackpackMenu()
+        {
             Console.Write("\n");
             Console.WriteLine("Displaying the Backpack menu\n");
 
@@ -247,27 +254,27 @@ namespace GalacticQuest
                   Console.WriteLine("Invalid Option. Please try a valid option.");
                   break;
             }
-         }
+        }
 
-      internal static void FilterMonstersByName(List<Monster> monsters)
+        internal static void FilterMonstersByName(IList<Monster> monsters)
         {
             Console.WriteLine("Enter letters to filter monsters: ");
             string? userInput = Console.ReadLine();
 
             Console.Write("\n");
 
-            Dictionary<string, int> filteredMonstersByName = new Dictionary<string, int>();
+            IDictionary<string, int> filteredMonstersByName = new Dictionary<string, int>();
             if (!string.IsNullOrEmpty(userInput))
             {
                 string lowerCasedUserInput = userInput.ToLower();
-                for (int index = 0; index < monsters.Count; ++index)
+                foreach (Monster monster in monsters)
                 {
-                    string currentMonsterName = monsters[index].Name;
+                    string currentMonsterName = monster.Name;
                     string lowerCasedCurrentMonster = currentMonsterName.ToLower();
 
                     if (lowerCasedCurrentMonster.StartsWith(lowerCasedUserInput))
                     {
-                        int currentMonsterHp = monsters[index].Hp;
+                        int currentMonsterHp = monster.Hp;
                         filteredMonstersByName.Add(currentMonsterName, currentMonsterHp);
                     }
                 }
@@ -277,9 +284,9 @@ namespace GalacticQuest
                 Console.WriteLine("No input provided. Showing all monsters.");
                 Console.Write("\n");
 
-                for (int index = 0; index < monsters.Count; ++index)
+                foreach (Monster monster in monsters)
                 {
-                    Console.WriteLine(monsters[index].Name);
+                    Console.WriteLine(monster.Name);
                 }
             }
 
@@ -290,21 +297,77 @@ namespace GalacticQuest
             }
             else
             {
-                for (int index = 0; index < filteredMonstersByName.Count; ++index)
+                foreach (var kvp in filteredMonstersByName)
                 {
-                    Console.WriteLine(filteredMonstersByName.Keys.ElementAt(index) + " - " + filteredMonstersByName.Values.ElementAt(index) + " HP");
+                    Console.WriteLine(kvp.Key + " - " + kvp.Value + " HP");
                 }
             }
         }
 
-        internal static void ShowMonstersLastWords(List<Monster> monsters)
+        internal static void ShowMonstersLastWords(IList<Monster> monsters)
         {
             Console.WriteLine("Monsters' Last Words:");
 
-            for (int index = 0; index < monsters.Count; ++index)
+            foreach (Monster monster in monsters)
             {
-                monsters[index].OnDeath();
+                monster.OnDeath();
             }
+        }
+
+        internal static void StartExploration()
+        {
+            IPlanet currentPlanet = PlanetHelper.GetCurrentPlanet();
+
+            if (currentPlanet == null)
+            {
+                Console.WriteLine("You need to travel to a planet first!");
+                return;
+            }
+
+            Monster randomMonster = PlanetHelper.GetRandomMonsterFromCurrentPlanet();
+
+            if (randomMonster == null)
+            {
+                Console.WriteLine("No monsters found on this planet...");
+                return;
+            }
+
+            Console.WriteLine($"You encountered: {randomMonster.Name} (HP: {randomMonster.Hp}, Attack: {randomMonster.Attack})");
+
+            StartBattle(currentPlayer, randomMonster);
+        }
+        internal static void StartBattle(Player player, Monster monster)
+        {
+            Random random = new Random();
+
+            Console.WriteLine($"BATTLE: You VS {monster.Name}");
+
+            monster.BattleCry();
+            Console.WriteLine();
+
+            int playerRoll = random.Next(0, player.Attack + 1);
+            int monsterRoll = random.Next(0, monster.Attack + 1);
+
+            Console.WriteLine($"Your attack roll: {playerRoll} (max: {player.Attack})");
+            Console.WriteLine($"{monster.Name}'s attack roll: {monsterRoll} (max: {monster.Attack})");
+            Console.WriteLine();
+
+            if (playerRoll > monsterRoll)
+            {
+                Console.WriteLine($"VICTORY! You defeated {monster.Name}!");
+                monster.OnDeath();
+            }
+            else if (monsterRoll > playerRoll)
+            {
+                Console.WriteLine($"DEFEAT! {monster.Name} has won!");
+                player.UpdateHp(-10);
+            }
+            else
+            {
+                Console.WriteLine("DRAW! Both attacks were equal!");
+            }
+
+            Console.WriteLine();
         }
     }
 }
